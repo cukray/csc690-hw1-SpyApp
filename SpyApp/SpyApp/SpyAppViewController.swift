@@ -47,5 +47,19 @@ class SpyAppViewController: UIViewController {
         }
         cipher = factory.cipher(for: buttonText)
     }
+    
+
+    @IBAction func decryptButtonPressed(_ sender: UIButton) {
+        guard let cipher = self.cipher else {
+            output.text = "No cipher selected"
+            return
+        }
+        if let decrypted = cipher.decrypt(plaintext, secret: secretText) {
+            output.text = decrypted
+        } else {
+            output.text = "Error decrypting"
+        }
+    }
+    
 }
 
